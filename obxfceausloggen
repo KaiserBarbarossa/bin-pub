@@ -1,0 +1,12 @@
+#!/bin/bash
+desktop=$(printenv XDG_SESSION_DESKTOP)
+if [ "$desktop" == "openbox" ]
+    then
+        obsession-logout
+    elif [ "$desktop" == "XFCE" ]
+        then
+            xfce4-session-logout
+    else
+        echo "Desktopumgebung nicht unterstützt. Beende."
+        exit 1
+fi
