@@ -3,7 +3,7 @@ desktop=$(printenv XDG_SESSION_DESKTOP)
 if [ "$desktop" == "openbox" ]
     then
         obsession-logout
-    elif [ "$desktop" == "XFCE" ]
+    elif [ "$desktop" == "xfce" ]
         then
             xfce4-session-logout
     else
