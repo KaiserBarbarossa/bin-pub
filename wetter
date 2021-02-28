@@ -1,3 +1,5 @@
 #!/bin/bash
 
+# See README for more details
+
 curl http://wttr.in/"$1"

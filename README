@@ -1,0 +1,10 @@
+Some useful (maybe?) scripts located under ~/bin.
+
+Just clone this repository and add ~/bin to your path.
+
+
+
+git clone https://github.com/KaiserBarbarossa/bin-pub.git bin
+
+
+All scripts are licensed under GPL v3. See LICENSE for more details.

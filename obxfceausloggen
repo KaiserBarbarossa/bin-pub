@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# See READMe for more details
+
 desktop=$(printenv XDG_SESSION_DESKTOP)
 if [ "$desktop" == "openbox" ]
     then
