@@ -1,0 +1,12 @@
+#!/bin/bash
+
+## See License for more Details
+# count the lines in the git repo
+
+if [ -d "$PWD"/.git ]
+	then
+		cloc $(git ls-files)
+	else
+		echo "Kein Git-Repository gefunden"
+		exit 1
+fi
