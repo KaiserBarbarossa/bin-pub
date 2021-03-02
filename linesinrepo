@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## See License for more Details
+# See README for more Details
 # count the lines in the git repo
 
 if [ -d "$PWD"/.git ]
