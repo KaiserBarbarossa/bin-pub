@@ -1,0 +1,15 @@
+#!/bin/bash
+# See README for more details
+
+if [ $(id -u) -ne 0 ]; then
+    echo "Wo sind deine Root-Rechte?"
+    exit 1
+fi
+apt-get purge snapd -y
+apt-get update
+
+cat <<EOF > /etc/apt/preferences.d/nosnap.pref
+Package:	snapd
+Pin:		release a=*
+Pin-Priority:	-10
+EOF
