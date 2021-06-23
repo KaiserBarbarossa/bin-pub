@@ -3,10 +3,9 @@
 # See README for more Details
 # count the lines in the git repo
 
-if [ -d "$PWD"/.git ]
-	then
-		cloc $(git ls-files)
-	else
-		echo "Kein Git-Repository gefunden"
-		exit 1
+if [ "$1" == "" ]
+    then
+        cloc $(git ls-files)
+    else
+        cd "$1" && cloc $(git ls-files)
 fi
