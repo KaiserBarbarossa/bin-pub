@@ -1,0 +1,98 @@
+#!/bin/bash
+
+set -e
+
+####################################################
+# Farben                                           #
+####################################################
+
+
+red="\e[0;91m"
+green="\e[0;92m"
+bold="\e[1m"
+uline="\e[4m"
+reset="\e[0m"
+
+####################################################
+# Funktionen                                       #
+####################################################
+
+aurupdate() {
+    if [ -d ~/aur ] 
+        then
+            echo -e "${bold}Aktualisiere AUR${reset}"
+            dir="$HOME/aur"
+            for aurdir in "$dir"/* ; do
+                echo -e "${green}Aktualisiere "$aurdir"${reset}"
+                cd "$aurdir"
+                git pull
+            done
+        else
+            echo -e "${bold}${red}Es existieren keine AUR-Pakete oder sie liegen nicht im Verzeichnis ~/aur${reset}"
+    fi
+}
+
+liquidpromptupd() {
+    if [ -d ~/liquidprompt ] 
+        then
+            echo -e "${bold}Aktualisiere Liquidprompt${reset}"
+            promptdir="$HOME/liquidprompt"
+            cd "$promptdir"
+            git pull
+        else
+            echo -e "${red}${bold}Liquidprompt existiert nicht oder liegt nicht im Verzeichnis ~/liquidprompt${reset}"
+    fi
+}
+
+vimupdate() {
+    if [ -d ~/.vim/bundle ] 
+        then
+            echo -e "${bold}Aktualisiere VIM-Pakete${reset}"
+            dir="$HOME/.vim/bundle"
+            for pkgdir in "$dir"/* ; do
+                echo -e "${green}Aktualisiere "$pkgdir"${reset}"
+                cd "$pkgdir"
+                git pull
+            done
+        else
+            echo -e "${bold}${red}Es existieren keine VIM-Pakete oder sie liegen nicht im Verzeichnis ~/.vim/bundle${reset}"
+    fi
+}
+
+updpathogen() {
+    echo -e "${bold}Aktualisiere Pathogen${reset}"
+    curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+}
+
+pipupdate() {
+    echo -e "${bold}Aktualisiere PIP-Pakete${reset}"
+    pip3 freeze --user | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install --user -U
+}
+
+sponsorblockupdate() {
+    if [ -d ~/.config/mpv/scripts ] 
+        then
+            echo -e "${bold}Aktualisiere Sponsor-Block${reset}"
+            cd ~/.config/mpv/scripts/
+            git pull
+        else
+            echo -e "${bold}${red}SponsorBlock existiert nicht.${reset}"
+    fi
+}
+
+####################################################
+# Ab hier werden die Funktionen ausgeführt         #
+####################################################
+
+aurupdate
+liquidpromptupd
+updpathogen
+vimupdate
+sponsorblockupdate
+
+if [ "$1" == "--nopip" ]
+    then
+        echo -e "${bold}${red}PIP-Pakete werden übersprungen${reset}"
+    else
+        pipupdate
+fi
