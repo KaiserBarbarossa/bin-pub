@@ -10,7 +10,6 @@ set -e
 red="\e[0;91m"
 green="\e[0;92m"
 bold="\e[1m"
-uline="\e[4m"
 reset="\e[0m"
 
 ####################################################
@@ -23,7 +22,7 @@ aurupdate() {
             echo -e "${bold}Aktualisiere AUR${reset}"
             dir="$HOME/aur"
             for aurdir in "$dir"/* ; do
-                echo -e "${green}Aktualisiere "$aurdir"${reset}"
+                echo -e "${green}Aktualisiere ""$aurdir""${reset}"
                 cd "$aurdir"
                 git pull
             done
@@ -50,7 +49,7 @@ vimupdate() {
             echo -e "${bold}Aktualisiere VIM-Pakete${reset}"
             dir="$HOME/.vim/bundle"
             for pkgdir in "$dir"/* ; do
-                echo -e "${green}Aktualisiere "$pkgdir"${reset}"
+                echo -e "${green}Aktualisiere ""$pkgdir""${reset}"
                 cd "$pkgdir"
                 git pull
             done
